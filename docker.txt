@@ -18,3 +18,17 @@ RUN npm run build -- --outputPath=./dist/out --configuration $configuration
 FROM nginx
 COPY --from=build /app/dist/out/ /usr/share/nginx/html
 COPY /nginx-custom.conf /etc/nginx/conf.d/default.conf
+
+MEMORY in docker restiction(Handled by CGROUP an kernel feature)
+Docker CRI can restrict the container based on Memory and CPU
+use the --memory and --memory-swap flags with the docker run command
+
+
+CPU Restriction in DOCKER(Handled by CGROUP an kernel feature)
+Restrict CPU utilization using the --cpu-shares flag with the docker run command:
+$ docker run -d --name kuard \
+--publish 8080:8080 \
+--memory 200m \
+--memory-swap 1G \
+--cpu-shares 1024 \
+gcr.io/kuar-demo/kuard-amd64:blue
