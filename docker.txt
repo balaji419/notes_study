@@ -1,0 +1,20 @@
+Docker 
+
+18-09-2020
+
+Multistage builds is used to reduce the size of the image, suppose if you are running npm install, followed by ng build for angular cli framework build compoenents, you will get the distribution folder.
+So you can copy the distribution folder to the docker image itself.
+There can be n stages of build, they are referred by "AS buildname". Example is as follows.
+
+# Stage 1: Build an Angular Docker Image
+FROM node as build
+WORKDIR /app
+COPY package*.json /app/
+RUN npm install
+COPY . /app
+ARG configuration=production
+RUN npm run build -- --outputPath=./dist/out --configuration $configuration
+# Stage 2, use the compiled app, ready for production with Nginx
+FROM nginx
+COPY --from=build /app/dist/out/ /usr/share/nginx/html
+COPY /nginx-custom.conf /etc/nginx/conf.d/default.conf
