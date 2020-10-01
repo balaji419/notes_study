@@ -1,0 +1,10 @@
+Native kuberetes implemented as an service in EKS,AKS,GKS
+
+AKS:
+
+Nodepools(Similar to node group in AWS)
+collection of nodes
+kubernetes version used: 1.17.9
+
+
+
