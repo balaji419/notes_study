@@ -6,5 +6,10 @@ Nodepools(Similar to node group in AWS)
 collection of nodes
 kubernetes version used: 1.17.9
 
+First when login any kubernetes environment:
+1)Check nodelist
+2)Check clusterinfo
+3)kubectl get componentstatus
+3)kubectl api-resources -o wide--> this is to know compoenent available in the cluster
 
 
