@@ -1,0 +1,15 @@
+privilage escalation:
+
+become: true
+become_user:
+become_method:
+--ask-become-pass
+
+In inventory file we can group hosts based on tags:
+[webservers]
+web1
+web2
+
+[webservers:vars]
+become_user: test1
+become_method: sudo
